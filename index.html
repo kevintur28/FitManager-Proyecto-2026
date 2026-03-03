@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitManager - Formularios</title>
+<link rel="stylesheet" href="Css/styles.css">
+</head>
+<body>
+
+<header>
+  <h1>FitManager - Formularios del Sistema</h1>
+</header>
+
+<section>
+  <h2>Usuarios</h2>
+  <form>
+    <label>Nombre:</label>
+    <input type="text" name="nombre" required>
+
+    <label>Apellido:</label>
+    <input type="text" name="apellido" required>
+
+    <label>Documento:</label>
+    <input type="text" name="documento" required>
+
+    <label>Tipo de Documento:</label>
+    <select name="tipo_documento" required>
+      <option value="">Seleccione una opción</option>
+      <option value="TI">Tarjeta de Identidad (T.I)</option>
+      <option value="CC">Cédula de Ciudadanía (C.C)</option>
+      <option value="CE">Cédula de Extranjeria (C.E)</option>
+    </select>
+
+    <label>Email:</label>
+    <input type="email" name="email" required>
+
+    <label>Rol:</label>
+    <select name="rol" required>
+      <option value="">Seleccione un rol</option>
+      <option value="entrenador">Entrenador</option>
+      <option value="cliente">Cliente</option>
+    </select>
+
+    <div class="botones">
+      <button class="guardar" formaction="guardar_usuario.php" type="submit">Guardar</button>
+      <button class="editar" formaction="editar_usuario.php" type="submit">Editar</button>
+      <button class="eliminar" formaction="eliminar_usuario.php" type="submit">Eliminar</button>
+    </div>
+  </form>
+</section>
+
+<section>
+    
+  <h2>Tipo de Documento:</h2>
+    <form>
+
+    <label>Tipo de Documento:</label>
+    <select name="tipo_documento" required>
+      <option value="">Seleccione una opción</option>
+      <option value="TI">Tarjeta de Identidad (T.I)</option>
+      <option value="CC">Cédula de Ciudadanía (C.C)</option>
+      <option value="CE">Cedula de Extranjeria (C.E)</option>
+    </select>
+        <div class="botones">
+      <button class="guardar" formaction="guardar_Tipo_de_documento.php" type="submit">Guardar</button>
+      <button class="editar" formaction="editar_Tipo_de_documento.php" type="submit">Editar</button>
+      <button class="eliminar" formaction="eliminar_Tipo_de_documento.php" type="submit">Eliminar</button>
+    </div>
+    </form>
+
+</section>
+
+<section>
+  <h2>Evaluaciones Físicas</h2>
+  <form>
+    <label>Fecha:</label>
+    <input type="date" name="fecha" required>
+
+    <label>Peso (kg):</label>
+    <input type="number" name="peso" step="0.1" required>
+
+    <label>Edad:</label>
+    <input type="number" name="edad" required>
+
+    <label>Condición:</label>
+    <select name="condicion">
+      <option value="">Seleccione una condición</option>
+      <option value="excelente">Excelente</option>
+      <option value="buena">Buena</option>
+      <option value="regular">Regular</option>
+      <option value="mala">Mala</option>
+    </select>
+
+    <label>Pruebas Realizadas:</label>
+    <input type="text" name="pruebas">
+
+    <label>Usuario:</label>
+    <select name="usuario">
+      <option value="">Seleccione un usuario</option>
+      <option value="1">Juan Pérez</option>
+      <option value="2">María Gómez</option>
+      <option value="3">Carlos Ruiz</option>
+    </select>
+
+    <div class="botones">
+      <button class="guardar" formaction="guardar_evaluacion.php" type="submit">Guardar</button>
+      <button class="editar" formaction="editar_evaluacion.php" type="submit">Editar</button>
+      <button class="eliminar" formaction="eliminar_evaluacion.php" type="submit">Eliminar</button>
+    </div>
+  </form>
+</section>
+
+<section>
+  <h2>Factura Cabecera</h2>
+  <form>
+    <label>Fecha:</label>
+    <input type="date" name="fecha_fact" required>
+
+    <label>N° Factura:</label>
+    <input type="text" name="n_factura" required>
+
+    <label>Valor Total:</label>
+    <input type="number" name="valortotal" step="0.01" required>
+
+    <label>Método de Pago:</label>
+    <select name="metodo_pago" required>
+      <option value="">Seleccione un método</option>
+      <option value="efectivo">Efectivo</option>
+      <option value="tarjeta">Tarjeta</option>
+      <option value="transferencia">Transferencia</option>
+    </select>
+
+    <label>Usuario:</label>
+    <select name="usuario" required>
+      <option value="">Seleccione un usuario</option>
+      <option value="1">Juan Pérez</option>
+      <option value="2">María Gómez</option>
+    </select>
+
+    <div class="botones">
+      <button class="guardar" formaction="guardar_factura_cabecera.php" type="submit">Guardar</button>
+      <button class="editar" formaction="editar_factura_cabecera.php" type="submit">Editar</button>
+      <button class="eliminar" formaction="eliminar_factura_cabecera.php" type="submit">Eliminar</button>
+    </div>
+  </form>
+</section>
+
+
+
+<section>
+  <h2>Factura Detallada</h2>
+  <form>
+    <label>Cantidad:</label>
+    <input type="number" name="Cantidad" required>
+
+    <label>Productos:</label>
+    <input type="text" name="Productos" required>
+
+    <label>Factura Cabecera:</label>
+    <input type="text" name=" Factura Cabecera" required>
+
+    <label>Membresías:</label>
+    <input type="text" name="Membresías" required>
+
+    <div class="botones">
+      <button class="guardar" formaction="guardar_factura_detallada.php" type="submit">Guardar</button>
+      <button class="editar" formaction="editar_factura_detallada.php" type="submit">Editar</button>
+      <button class="eliminar" formaction="eliminar_factura_detallada.php" type="submit">Eliminar</button>
+    </div>
+  </form>
+</section>
+
+<section>
+  <h2>Membresías</h2>
+  <form>
+    <label>Tipo:</label>
+    <select name="tipo" required>
+      <option value="">Seleccione una membresía</option>
+      <option value="mensual">Mensual</option>
+      <option value="trimestral">Trimestral</option>
+      <option value="anual">Anual</option>
+    </select>
+
+    <label>Precio:</label>
+    <input type="number" name="precio" step="0.01" required>
+
+    <label>Duración (meses):</label>
+    <input type="number" name="duracion_meses" required>
+
+    <div class="botones">
+      <button class="guardar" formaction="guardar_membresia.php" type="submit">Guardar</button>
+      <button class="editar" formaction="editar_membresia.php" type="submit">Editar</button>
+      <button class="eliminar" formaction="eliminar_membresia.php" type="submit">Eliminar</button>
+    </div>
+  </form>
+</section>
+
+
+<section>
+  <h2>Productos</h2>
+  <form>
+    <label>Descripción:</label>
+    <input type="text" name="Descripción" required>
+    
+    <label>Precio:</label>
+    <input type="number" name="Precio" required>
+
+    <label>Cantidad: </label>
+    <input type="number" name="Cantidad" required>
+    <div class="botones">
+      <button class="guardar" formaction="guardar_producto.php" type="submit">Guardar</button>
+      <button class="editar" formaction="editar_producto.php" type="submit">Editar</button>
+      <button class="eliminar" formaction="eliminar_producto.php" type="submit">Eliminar</button>
+    </div>
+  </form>
+</section>
+
+
+<section>
+  <h2>Proveedores</h2>
+  <form>
+    <label>Nombre</label>
+    <input type="text" name="Nombre" required>.
+    <label>Producto</label>
+    <input type="text" name="Producto" required>
+    <div class="botones">
+      <button class="guardar" formaction="guardar_Proovedor.php" type="submit">Guardar</button>
+      <button class="editar" formaction="editar_Proovedor.php" type="submit">Editar</button>
+      <button class="eliminar" formaction="eliminar_Proovedor.php" type="submit">Eliminar</button>
+      </div>
+  </form>
+
+
+<section>
+  
+  
+  
+  
+  <h2>Método de Pago</h2>
+  <form>
+    <label>Descripción:</label>
+    <select name="descripcion" required>
+      <option value="">Seleccione una opción</option>
+      <option value="efectivo">Efectivo</option>
+      <option value="tarjeta">Tarjeta</option>
+      <option value="transferencia">Transferencia</option>
+    </select>
+
+    <div class="botones">
+      <button class="guardar" formaction="guardar_metodopago.php" type="submit">Guardar</button>
+      <button class="editar" formaction="editar_metodopago.php" type="submit">Editar</button>
+      <button class="eliminar" formaction="eliminar_metodopago.php" type="submit">Eliminar</button>
+    </div>
+  </form>
+</section>
+
+<section>
+  <h2>Sedes</h2>
+  <form>
+    <label>Nombre de la sede:</label>
+    <input type="text" name="Nombre_de_la_sede" required>
+
+    <label>Dirección de la sede:</label>
+    <input type="text" name="Dirección_de_la_sede">
+    <div class="botones">
+      <button class="guardar" formaction="guardar_sedes.php" type="submit">Guardar</button>
+      <button class="editar" formaction="editar_sedes.php" type="submit">Editar</button>
+      <button class="eliminar" formaction="eliminar_sedes.php" type="submit">Eliminar</button>
+    </div>
+  </form>
+</section>
+
+
+<section>
+  <h2>Roles</h2>
+  <form>
+    <label>Descripción del Rol:</label>
+    <select name="descripcion" required>
+      <option value="">Seleccione un rol</option>
+      <option value="entrenador">Entrenador</option>
+      <option value="cliente">Cliente</option>
+    </select>
+
+    <div class="botones">
+      <button class="guardar" formaction="guardar_rol.php" type="submit">Guardar</button>
+      <button class="editar" formaction="editar_rol.php" type="submit">Editar</button>
+      <button class="eliminar" formaction="eliminar_rol.php" type="submit">Eliminar</button>
+    </div>
+  </form>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+ body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #2b4eff;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    section {
+      max-width: 750px;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #2b4eff;
+      text-align: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input, select {
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .botones {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+      width: 30%;
+    }
+    .guardar { background: #2ecc71; }
+    .editar { background: #3498db; }
+    .eliminar { background: #e74c3c; }
+    button:hover { opacity: 0.85; }
