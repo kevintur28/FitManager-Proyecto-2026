@@ -1,249 +1,243 @@
-// ===================== ADMINS =====================
 const ADMINS = [
-  { email: "ke2812007@gmail.com", password: "kevin28122007" },
-  { email: "dverapenuela@gmail.com", password: "1013609004" }
-];
+{ email:"ke2812007@gmail.com", password:"kevin28122007"},
+{ email:"dverapenuela@gmail.com", password:"1013609004"}
+]
 
-// ===================== STORAGE =====================
-function getUsers() {
-  return JSON.parse(localStorage.getItem("users")) || [];
+function getUsers(){
+return JSON.parse(localStorage.getItem("users"))||[]
 }
 
-function saveUsers(users) {
-  localStorage.setItem("users", JSON.stringify(users));
+function saveUsers(users){
+localStorage.setItem("users",JSON.stringify(users))
 }
 
-function getClases() {
-  return JSON.parse(localStorage.getItem("clases")) || [];
+function getClases(){
+return JSON.parse(localStorage.getItem("clases"))||[]
 }
 
-function saveClases(clases) {
-  localStorage.setItem("clases", JSON.stringify(clases));
+function saveClases(clases){
+localStorage.setItem("clases",JSON.stringify(clases))
 }
 
-// ===================== SESIÓN =====================
-function setSession(user) {
-  localStorage.setItem("session", JSON.stringify(user));
+function setSession(user){
+localStorage.setItem("session",JSON.stringify(user))
 }
 
-function getSession() {
-  return JSON.parse(localStorage.getItem("session"));
+function getSession(){
+return JSON.parse(localStorage.getItem("session"))
 }
 
-function logout() {
-  localStorage.removeItem("session");
-  window.location.href = "login.html";
+function logout(){
+localStorage.removeItem("session")
+window.location.href="login.html"
 }
 
-// ===================== REGISTRO =====================
-function register() {
-  const user = {
-    email: document.getElementById("email").value.trim(),
-    password: document.getElementById("password").value.trim(),
-    telefono: document.getElementById("telefono").value,
-    tipoId: document.getElementById("tipoId").value,
-    numeroId: document.getElementById("numeroId").value,
-    peso: document.getElementById("peso").value,
-    edad: document.getElementById("edad").value,
-    altura: document.getElementById("altura").value,
-    rol: "cliente",
-    membresia: "Básica",
-    clases: []
-  };
+function register(){
 
-  if (!user.email || !user.password) {
-    alert("Completa los campos obligatorios");
-    return;
-  }
-
-  const users = getUsers();
-
-  if (users.some(u => u.email === user.email)) {
-    alert("El usuario ya existe");
-    return;
-  }
-
-  users.push(user);
-  saveUsers(users);
-
-  alert("Cuenta creada correctamente");
-  window.location.href = "login.html";
+const user={
+email:document.getElementById("email").value,
+password:document.getElementById("password").value,
+telefono:document.getElementById("telefono").value,
+tipoId:document.getElementById("tipoId").value,
+numeroId:document.getElementById("numeroId").value,
+peso:document.getElementById("peso").value,
+edad:document.getElementById("edad").value,
+altura:document.getElementById("altura").value,
+membresia:"Básica",
+clases:[]
 }
 
-// ===================== LOGIN =====================
-function login() {
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value.trim();
+const users=getUsers()
 
-  // 👉 ADMINS PREDETERMINADOS
-  const admin = ADMINS.find(
-    a => a.email === email && a.password === password
-  );
+users.push(user)
 
-  if (admin) {
-    setSession({ email: admin.email, rol: "admin" });
-    window.location.href = "admin.html";
-    return;
-  }
+saveUsers(users)
 
-  // CLIENTES
-  const users = getUsers();
-  const user = users.find(
-    u => u.email === email && u.password === password
-  );
+alert("Cuenta creada")
 
-  if (!user) {
-    alert("Correo o contraseña incorrectos");
-    return;
-  }
+window.location.href="login.html"
 
-  setSession(user);
-  window.location.href = "cliente.html";
 }
 
-// ===================== PANEL ADMIN =====================
-function mostrarAdmin(id) {
-  document.querySelectorAll(".admin-sec").forEach(sec => {
-    sec.classList.add("hidden");
-  });
-  document.getElementById(id).classList.remove("hidden");
+function login(){
+
+const email=document.getElementById("email").value
+const password=document.getElementById("password").value
+
+const admin=ADMINS.find(a=>a.email===email && a.password===password)
+
+if(admin){
+
+setSession({email:admin.email,rol:"admin"})
+window.location.href="admin.html"
+return
+
 }
 
-function cargarClientes() {
-  const users = getUsers();
-  const tbody = document.getElementById("tablaClientes");
-  if (!tbody) return;
+const users=getUsers()
 
-  tbody.innerHTML = "";
+const user=users.find(u=>u.email===email && u.password===password)
 
-  users.forEach((u, i) => {
-    tbody.innerHTML += `
-      <tr>
-        <td>${u.email}</td>
-        <td>${u.membresia}</td>
-        <td>
-          <select onchange="cambiarMembresia(${i}, this.value)">
-            <option ${u.membresia==="Básica"?"selected":""}>Básica</option>
-            <option ${u.membresia==="Normal"?"selected":""}>Normal</option>
-            <option ${u.membresia==="Pro"?"selected":""}>Pro</option>
-            <option ${u.membresia==="Premium"?"selected":""}>Premium</option>
-          </select>
-          <button onclick="eliminarCliente(${i})">Eliminar</button>
-        </td>
-      </tr>
-    `;
-  });
+if(!user){
+alert("Datos incorrectos")
+return
 }
 
-function cambiarMembresia(index, nueva) {
-  const users = getUsers();
-  users[index].membresia = nueva;
-  saveUsers(users);
-  cargarClientes();
+setSession(user)
+
+window.location.href="cliente.html"
+
 }
 
-function eliminarCliente(index) {
-  const users = getUsers();
-  users.splice(index, 1);
-  saveUsers(users);
-  cargarClientes();
+function mostrarAdmin(id){
+
+document.querySelectorAll(".admin-sec").forEach(sec=>{
+sec.classList.add("hidden")
+})
+
+document.getElementById(id).classList.remove("hidden")
+
 }
 
-// ===================== CLASES ADMIN =====================
-function agregarClase() {
-  const nombre = document.getElementById("nombreClase").value.trim();
-  if (!nombre) return;
+function mostrarCliente(id){
 
-  const clases = getClases();
-  clases.push({ nombre });
-  saveClases(clases);
+document.querySelectorAll(".cliente-sec").forEach(sec=>{
+sec.classList.add("hidden")
+})
 
-  document.getElementById("nombreClase").value = "";
-  cargarClasesAdmin();
+document.getElementById(id).classList.remove("hidden")
+
 }
 
-function eliminarClase(index) {
-  const clases = getClases();
-  clases.splice(index, 1);
-  saveClases(clases);
-  cargarClasesAdmin();
+function cargarClientes(){
+
+const tabla=document.getElementById("tablaClientes")
+
+if(!tabla) return
+
+tabla.innerHTML=""
+
+const users=getUsers()
+
+users.forEach((u,i)=>{
+
+tabla.innerHTML+=`
+<tr>
+<td>${u.email}</td>
+<td>${u.membresia}</td>
+<td>
+<button onclick="eliminarCliente(${i})">Eliminar</button>
+</td>
+</tr>
+`
+
+})
+
 }
 
-function cargarClasesAdmin() {
-  const lista = document.getElementById("listaClasesAdmin");
-  if (!lista) return;
+function eliminarCliente(i){
 
-  const clases = getClases();
-  lista.innerHTML = "";
+const users=getUsers()
 
-  clases.forEach((c, i) => {
-    lista.innerHTML += `
-      <li>
-        ${c.nombre}
-        <button onclick="eliminarClase(${i})">Eliminar</button>
-      </li>
-    `;
-  });
+users.splice(i,1)
+
+saveUsers(users)
+
+cargarClientes()
+
 }
 
-// ===================== PANEL CLIENTE =====================
-function mostrarCliente(id) {
-  document.querySelectorAll(".cliente-sec").forEach(sec => {
-    sec.classList.add("hidden");
-  });
-  document.getElementById(id).classList.remove("hidden");
+function agregarClase(){
+
+const nombre=document.getElementById("nombreClase").value
+const horario=document.getElementById("horarioClase").value
+
+if(nombre==""||horario==""){
+alert("Completa los campos")
+return
 }
 
-function cargarPerfilCliente() {
-  const user = getSession();
-  if (!user) return;
+const clases=getClases()
 
-  const div = document.getElementById("infoCliente");
-  if (!div) return;
+clases.push({nombre,horario})
 
-  div.innerHTML = `
-    <p><strong>Email:</strong> ${user.email}</p>
-    <p><strong>Membresía:</strong> ${user.membresia}</p>
-  `;
+saveClases(clases)
+
+cargarClasesAdmin()
+
 }
 
-function cargarClasesCliente() {
-  const lista = document.getElementById("listaClasesCliente");
-  if (!lista) return;
+function cargarClasesAdmin(){
 
-  const clases = getClases();
-  lista.innerHTML = "";
+const tabla=document.getElementById("tablaClasesAdmin")
 
-  clases.forEach((c, i) => {
-    lista.innerHTML += `
-      <li>
-        ${c.nombre}
-        <button onclick="inscribirse(${i})">Inscribirse</button>
-      </li>
-    `;
-  });
+if(!tabla) return
+
+tabla.innerHTML=""
+
+const clases=getClases()
+
+clases.forEach((c,i)=>{
+
+tabla.innerHTML+=`
+<tr>
+<td>${c.nombre}</td>
+<td>${c.horario}</td>
+<td>
+<button onclick="eliminarClase(${i})">Eliminar</button>
+</td>
+</tr>
+`
+
+})
+
 }
 
-function inscribirse(index) {
-  const user = getSession();
-  const users = getUsers();
+function eliminarClase(i){
 
-  const i = users.findIndex(u => u.email === user.email);
-  if (i === -1) return;
+const clases=getClases()
 
-  if (!users[i].clases.includes(index)) {
-    users[i].clases.push(index);
-    saveUsers(users);
-    setSession(users[i]);
-  }
+clases.splice(i,1)
 
-  alert("Inscripción realizada");
+saveClases(clases)
+
+cargarClasesAdmin()
+
 }
 
-// ===================== AUTOLOAD =====================
-document.addEventListener("DOMContentLoaded", () => {
-  cargarClientes();
-  cargarClasesAdmin();
-  cargarClasesCliente();
-  cargarPerfilCliente();
-});
+function cargarClasesCliente(){
+
+const lista=document.getElementById("listaClasesCliente")
+
+if(!lista) return
+
+lista.innerHTML=""
+
+const clases=getClases()
+
+clases.forEach((c,i)=>{
+
+lista.innerHTML+=`
+<li>
+${c.nombre} - ${c.horario}
+<button onclick="inscribirse(${i})">Inscribirse</button>
+</li>
+`
+
+})
+
+}
+
+function inscribirse(i){
+
+alert("Inscripción realizada")
+
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+cargarClientes()
+cargarClasesAdmin()
+cargarClasesCliente()
+
+})
