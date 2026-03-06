@@ -1,40 +1,41 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Registrarse</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<title>Registro</title>
+<link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
-<header class="header">
-  FitManager
-</header>
-
 <section class="login">
-  <div class="login-card">
-    <h2>Crear cuenta</h2>
 
-    <input id="email" type="email" placeholder="Correo electrónico">
-    <input id="password" type="password" placeholder="Contraseña">
-    <input id="telefono" placeholder="Teléfono">
-    <input id="tipoId" placeholder="Tipo de identificación">
-    <input id="numeroId" placeholder="Número de identificación">
-    <input id="peso" placeholder="Peso (kg)">
-    <input id="edad" placeholder="Edad">
-    <input id="altura" placeholder="Altura (cm)">
+<div class="login-card">
 
-    <button class="btn" onclick="register()">Crear cuenta</button>
+<h2>Crear cuenta</h2>
 
-    <button class="btn danger" onclick="window.location.href='login.html'">
-      Volver
-    </button>
-  </div>
+<input id="email" placeholder="Correo">
+<input id="password" placeholder="Contraseña">
+
+<input id="telefono" placeholder="Teléfono">
+<input id="tipoId" placeholder="Tipo documento">
+<input id="numeroId" placeholder="Número documento">
+<input id="peso" placeholder="Peso">
+<input id="edad" placeholder="Edad">
+<input id="altura" placeholder="Altura">
+
+<button onclick="register()" class="btn">Registrarse</button>
+
+<p>
+¿Ya tienes cuenta?
+<a href="login.html">Iniciar sesión</a>
+</p>
+
+</div>
+
 </section>
 
 <script src="script.js"></script>
-</body>
 
-    <script src="https://cdn.botpress.cloud/webchat/v3.5/inject.js"></script>
-<script src="https://files.bpcontent.cloud/2025/08/15/12/20250815120426-M2R9G0NK.js" defer></script>
+</body>
 </html>
