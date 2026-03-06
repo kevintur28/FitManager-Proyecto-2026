@@ -1,41 +1,89 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Cliente</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<title>Panel Admin</title>
+<link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
-<div class="cliente-container">
-  <aside class="cliente-sidebar">
-    <h3>Cliente</h3>
-<button onclick="mostrarCliente('perfil')">Mi perfil</button>
-<button onclick="mostrarCliente('membresia')">Mi membresía</button>
-<button onclick="mostrarCliente('clases')">Clases</button>
+<div class="admin-container">
 
-    <button class="btn danger" onclick="logout()">Cerrar sesión</button>
-  </aside>
+<aside class="admin-sidebar">
 
-  <div class="cliente-content">
-    <section id="clienteClases" class="cliente-sec hidden">
-  <h2>Clases disponibles</h2>
-  <ul id="listaClasesCliente"></ul>
+<h3>Administrador</h3>
+
+<button onclick="mostrarAdmin('inicio')" class="nav-btn">Inicio</button>
+<button onclick="mostrarAdmin('clientes')" class="nav-btn">Clientes</button>
+<button onclick="mostrarAdmin('clases')" class="nav-btn">Clases</button>
+
+<button onclick="logout()" class="btn danger">Cerrar sesión</button>
+
+</aside>
+
+<main class="admin-content">
+
+<section id="inicio" class="admin-sec">
+
+<h2>Panel Administrador</h2>
+<p>Gestión de clientes y clases</p>
+
 </section>
 
-    <section id="perfil" class="cliente-sec">
-  <h2>Mi perfil</h2>
+<section id="clientes" class="admin-sec hidden">
+
+<h2>Clientes</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>Email</th>
+<th>Membresía</th>
+<th>Acción</th>
+</tr>
+</thead>
+
+<tbody id="tablaClientes"></tbody>
+
+</table>
+
 </section>
 
-<section id="membresia" class="cliente-sec hidden">
-  <h2>Mi membresía</h2>
+<section id="clases" class="admin-sec hidden">
+
+<h2>Clases</h2>
+
+<input id="nombreClase" placeholder="Nombre clase">
+<input id="horarioClase" placeholder="Horario">
+
+<button onclick="agregarClase()" class="btn">Agregar clase</button>
+
+<table>
+
+<thead>
+<tr>
+<th>Clase</th>
+<th>Horario</th>
+<th>Acción</th>
+</tr>
+</thead>
+
+<tbody id="tablaClasesAdmin"></tbody>
+
+</table>
+
 </section>
 
-<section id="clases" class="cliente-sec hidden">
-  <h2>Clases disponibles</h2>
-</section>
-  </div>
+</main>
+
 </div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
 
 <script src="script.js"></script>
 </body>
@@ -43,3 +91,4 @@
     <script src="https://cdn.botpress.cloud/webchat/v3.5/inject.js"></script>
 <script src="https://files.bpcontent.cloud/2025/08/15/12/20250815120426-M2R9G0NK.js" defer></script>
 </html>
+
