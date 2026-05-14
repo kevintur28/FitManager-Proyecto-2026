@@ -1,1 +1,0 @@
-# FitManager-Proyecto-2026
