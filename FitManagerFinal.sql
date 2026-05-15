@@ -18,6 +18,58 @@ USE `fitmanager`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `asistencias`
+--
+
+DROP TABLE IF EXISTS `asistencias`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `asistencias` (
+  `id_Asistencias` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` date NOT NULL,
+  `id_Usuarios` int(11) NOT NULL,
+  PRIMARY KEY (`id_Asistencias`),
+  UNIQUE KEY `uk_asistencia_usuario_fecha` (`id_Usuarios`,`fecha`),
+  CONSTRAINT `fk_asistencias_usuarios` FOREIGN KEY (`id_Usuarios`) REFERENCES `usuarios` (`id_Usuarios`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `asistencias`
+--
+
+LOCK TABLES `asistencias` WRITE;
+/*!40000 ALTER TABLE `asistencias` DISABLE KEYS */;
+INSERT INTO `asistencias` VALUES (3,'2026-05-13',1),(2,'2026-05-14',1),(1,'2026-05-15',1),(4,'2026-05-15',11);
+/*!40000 ALTER TABLE `asistencias` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `clases`
+--
+
+DROP TABLE IF EXISTS `clases`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `clases` (
+  `id_Clases` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_Clases`),
+  UNIQUE KEY `uk_clases_nombre` (`nombre`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `clases`
+--
+
+LOCK TABLES `clases` WRITE;
+/*!40000 ALTER TABLE `clases` DISABLE KEYS */;
+INSERT INTO `clases` VALUES (4,'Crossfit'),(2,'Funcional'),(5,'Pilates'),(1,'Spinning'),(3,'Yoga'),(6,'Zumba');
+/*!40000 ALTER TABLE `clases` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `evaluacionesfisicas`
 --
 
@@ -121,7 +173,7 @@ CREATE TABLE `membresias` (
   `id_Membresias` int(11) NOT NULL AUTO_INCREMENT,
   `tipo` varchar(50) NOT NULL,
   `precio` double NOT NULL,
-  `duracion_meses` int(11) NOT NULL,
+  `duracion_dias` int(11) NOT NULL,
   PRIMARY KEY (`id_Membresias`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -132,8 +184,36 @@ CREATE TABLE `membresias` (
 
 LOCK TABLES `membresias` WRITE;
 /*!40000 ALTER TABLE `membresias` DISABLE KEYS */;
-INSERT INTO `membresias` VALUES (1,'Diaria',5000,1),(2,'Mensual',50000,30),(3,'Bimestral',90000,60),(4,'trimestral',130000,90),(5,'Semestral',245000,180),(6,'Anual',450000,365);
+INSERT INTO `membresias` VALUES (1,'Diaria',5000,1),(2,'Mensual',50000,30),(3,'Bimestral',90000,60),(4,'Trimestral',130000,90),(5,'Semestral',245000,180),(6,'Anual',450000,365);
 /*!40000 ALTER TABLE `membresias` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `metas`
+--
+
+DROP TABLE IF EXISTS `metas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `metas` (
+  `id_Metas` int(11) NOT NULL AUTO_INCREMENT,
+  `ejercicio` varchar(100) NOT NULL,
+  `meta` int(11) NOT NULL,
+  `id_Usuarios` int(11) NOT NULL,
+  PRIMARY KEY (`id_Metas`),
+  KEY `fk_metas_usuarios` (`id_Usuarios`),
+  CONSTRAINT `fk_metas_usuarios` FOREIGN KEY (`id_Usuarios`) REFERENCES `usuarios` (`id_Usuarios`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `metas`
+--
+
+LOCK TABLES `metas` WRITE;
+/*!40000 ALTER TABLE `metas` DISABLE KEYS */;
+INSERT INTO `metas` VALUES (1,'Press banca',50,1),(2,'Sentadilla',80,5),(3,'Press Banca',25,5);
+/*!40000 ALTER TABLE `metas` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -211,6 +291,36 @@ INSERT INTO `proveedores` VALUES (1,'Pablo Recojedor','Proteina'),(2,'Pedro Carr
 UNLOCK TABLES;
 
 --
+-- Table structure for table `registros`
+--
+
+DROP TABLE IF EXISTS `registros`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `registros` (
+  `id_Registros` int(11) NOT NULL AUTO_INCREMENT,
+  `ejercicio` varchar(100) NOT NULL,
+  `repeticiones` int(11) NOT NULL,
+  `peso` decimal(10,2) NOT NULL,
+  `fecha` date NOT NULL,
+  `id_Usuarios` int(11) NOT NULL,
+  PRIMARY KEY (`id_Registros`),
+  KEY `fk_registros_usuarios` (`id_Usuarios`),
+  CONSTRAINT `fk_registros_usuarios` FOREIGN KEY (`id_Usuarios`) REFERENCES `usuarios` (`id_Usuarios`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `registros`
+--
+
+LOCK TABLES `registros` WRITE;
+/*!40000 ALTER TABLE `registros` DISABLE KEYS */;
+INSERT INTO `registros` VALUES (1,'Press banca',20,40.00,'2026-05-15',1),(2,'Sentadilla',30,50.00,'2026-05-15',5);
+/*!40000 ALTER TABLE `registros` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `roles`
 --
 
@@ -232,6 +342,34 @@ LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
 INSERT INTO `roles` VALUES (1,'Administrador'),(2,'Cliente');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `rutinas`
+--
+
+DROP TABLE IF EXISTS `rutinas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rutinas` (
+  `id_Rutinas` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) NOT NULL,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `id_Usuarios` int(11) NOT NULL,
+  PRIMARY KEY (`id_Rutinas`),
+  KEY `fk_rutinas_usuarios` (`id_Usuarios`),
+  CONSTRAINT `fk_rutinas_usuarios` FOREIGN KEY (`id_Usuarios`) REFERENCES `usuarios` (`id_Usuarios`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rutinas`
+--
+
+LOCK TABLES `rutinas` WRITE;
+/*!40000 ALTER TABLE `rutinas` DISABLE KEYS */;
+INSERT INTO `rutinas` VALUES (1,'Rutina pecho','Press banca, flexiones y aperturas',1),(2,'Rutina pierna','Sentadilla, prensa y zancadas',5);
+/*!40000 ALTER TABLE `rutinas` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -300,6 +438,7 @@ CREATE TABLE `usuarios` (
   `id_Roles` int(11) DEFAULT NULL,
   `password` varchar(100) NOT NULL,
   `id_Membresias` int(11) DEFAULT NULL,
+  `vencimiento` date DEFAULT NULL,
   PRIMARY KEY (`id_Usuarios`),
   KEY `id_TipoDocumento` (`id_TipoDocumento`),
   KEY `id_Roles` (`id_Roles`),
@@ -316,8 +455,36 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'Alan','Cruz','1012508006','AlanCru@gmail.com',2,2,'123456',1),(2,'Dylan','Vera','1013609004','dverapenuela@gmail.com',2,1,'200607Kd$',6),(5,'Maria','Pilar','53099689','Mariapilar@gmail.com',2,2,'987654',4),(6,'Kevin','Turizo','1028885474','ke2812007@gmail.com',2,1,'Kevin28122007#',6),(11,'Pedro','Narvaez','1039687994','pedronar@gmail.com',2,2,'246810@',3);
+INSERT INTO `usuarios` VALUES (1,'Alan','Cruz','1012508006','AlanCru@gmail.com',2,2,'123456',1,'2026-06-15'),(2,'Dylan','Vera','1013609004','dverapenuela@gmail.com',2,1,'200607Kd$',6,NULL),(5,'Maria','Pilar','53099689','Mariapilar@gmail.com',2,2,'987654',4,'2026-07-01'),(6,'Kevin','Turizo','1028885474','ke2812007@gmail.com',2,1,'Kevin28122007#',6,NULL),(11,'Pedro','Narvaez','1039687994','pedronar@gmail.com',2,2,'246810@',3,'2026-08-20');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usuarios_clases`
+--
+
+DROP TABLE IF EXISTS `usuarios_clases`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `usuarios_clases` (
+  `id_Usuarios` int(11) NOT NULL,
+  `id_Clases` int(11) NOT NULL,
+  `fecha_inscripcion` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id_Usuarios`,`id_Clases`),
+  KEY `fk_usuarios_clases_clase` (`id_Clases`),
+  CONSTRAINT `fk_usuarios_clases_clase` FOREIGN KEY (`id_Clases`) REFERENCES `clases` (`id_Clases`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_usuarios_clases_usuario` FOREIGN KEY (`id_Usuarios`) REFERENCES `usuarios` (`id_Usuarios`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuarios_clases`
+--
+
+LOCK TABLES `usuarios_clases` WRITE;
+/*!40000 ALTER TABLE `usuarios_clases` DISABLE KEYS */;
+INSERT INTO `usuarios_clases` VALUES (1,1,'2026-05-15 16:01:22'),(1,2,'2026-05-15 16:01:22'),(5,3,'2026-05-15 16:01:22');
+/*!40000 ALTER TABLE `usuarios_clases` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -329,4 +496,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-05-08  8:08:21
+-- Dump completed on 2026-05-15 11:16:28
